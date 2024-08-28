@@ -48,7 +48,6 @@ class UploadController extends Controller
     {
         $this->validate($request, [
             'file' => 'required',
-            // 'keterangan' => 'required',
         ]);
         $file = $request->file('file');
         $nama_file = time() . "_" . $file->getClientOriginalName();
@@ -72,11 +71,26 @@ class UploadController extends Controller
 
         $lastId = surat_hdr::latest('id')->value('id');
 
+        $split_surat_dokbasts_id = explode('/', $request->noDokumen);
+        $surat_dokbasts_id = $split_surat_dokbasts_id[0];
+
+        $find_surat_dokbasts = surat_dokbast::find($surat_dokbasts_id);
+
         DB::table('surat_dokbasts')->insert([
             'tanggal_diperoleh' => $request->tanggalDokumen,
             'pengirim' => $request->pengirim,
             'lokasi' => $request->lokasi,
             'surat_hdr_id' => $lastId,
+            'id_pihak_penerima' => $find_surat_dokbasts->id_pihak_penerima,
+            'id_pihak_penyerah' => $find_surat_dokbasts->id_pihak_penyerah,
+            'send_to' => $find_surat_dokbasts->send_to,
+            'kode_barang' => $find_surat_dokbasts->kode_barang,
+            'nama_barang' => $find_surat_dokbasts->nama_barang,
+            'spesifikasi_barang' => $find_surat_dokbasts->spesifikasi_barang,
+            'jumlah_barang' => $find_surat_dokbasts->jumlah_barang,
+            'satuan_barang' => $find_surat_dokbasts->satuan_barang,
+            'gambar_id' => $find_surat_dokbasts->gambar_id,
+            'tanggal_diperoleh' => $find_surat_dokbasts->tanggal_diperoleh,
         ]);
 
         Alert::success('Success!', 'Data Berhasil Di Upload');

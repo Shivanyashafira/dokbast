@@ -48,7 +48,7 @@ class SuratKeluarController extends Controller
     {
         $user = Auth::user();
         if ($user  != null) {
-            $posts = DB::table('surat_hdrs')
+            $suratDokbast = DB::table('surat_hdrs')
                 ->join('surat_dokbasts', 'surat_hdrs.id', '=', 'surat_dokbasts.surat_hdr_id')
                 ->leftjoin('employees as a', 'a.id', '=', 'surat_dokbasts.id_pihak_penerima')
                 ->leftjoin('employees as b', 'b.id', '=', 'surat_dokbasts.id_pihak_penyerah')
@@ -56,8 +56,7 @@ class SuratKeluarController extends Controller
                 ->where('surat_hdrs.id', $id)
                 ->select('surat_hdrs.*', 'surat_dokbasts.*', 'a.nama as namaPenerima', 'b.nama as namaPenyerah', 'c.*')
                 ->get();
-            // dd($posts);
-            return view('surat_keluar/viewSuratKeluar', ['user' => $user, 'suratDokbast' => $posts]);
+            return view('surat_keluar/viewSuratKeluar', ['user' => $user, 'suratDokbast' => $suratDokbast]);
         }
         return redirect('/login');
     }
@@ -66,6 +65,7 @@ class SuratKeluarController extends Controller
     {
         $user = Auth::user();
         if ($user  != null) {
+            // dd($id);
             $posts = DB::table('surat_hdrs')
                 ->join('surat_dokbasts', 'surat_hdrs.id', '=', 'surat_dokbasts.surat_hdr_id')
                 ->join('surat_hdrs as c', 'c.ticketNo', '=', 'surat_hdrs.ticketNo')
@@ -81,7 +81,7 @@ class SuratKeluarController extends Controller
                     'b.nip as nip2',
                     'b.nama as nama2'
                 )
-                ->get();
+                ->first();
             // dd($posts);
             // return view('surat_keluar/downloadPDF', ['user' => $user, 'suratDokbast' => $posts]);
             $pdf = FacadePdf::loadView('surat_keluar/downloadPDF', ['suratDokbast' => $posts])->setPaper('a4', 'portrait');

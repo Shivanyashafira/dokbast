@@ -39,10 +39,10 @@
                       >
                         <thead>
                           <tr>
-                            <th>No Dokumen</th>
+                            <th class="no-sort">No Dokumen</th>
                             <th>Tanggal</th>
-                            <th>Prihal</th>
-                            <th>Action</th>
+                            <th class="no-sort">Prihal</th>
+                            <th class="no-sort">Action</th>
                           </tr>
                         </thead>
                         <tbody>

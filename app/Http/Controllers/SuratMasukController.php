@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Carbon\Carbon;
 
 class SuratMasukController extends Controller
 {
@@ -39,17 +40,7 @@ class SuratMasukController extends Controller
                 ->join('surat_dokbasts as b', 'b.surat_hdr_id', '=', 'a.id')
                 ->leftJoin('gambar as c', 'c.id', '=', 'surat_hdrs.gambar_id')
                 ->where('surat_hdrs.id', $id)
-                ->get();
-            // ->select(
-            //     'c.file as file',
-            //     'b.kode_barang as kode_barang',
-            //     'b.nama_barang as nama_barang',
-            //     'b.spesifikasi_barang as spesifikasi_barang',
-            //     'b.jumlah_barang as jumlah_barang',
-            //     'b.satuan_barang as satuan_barang',
-            //     'surat_hdrs.id as id'
-            // );
-            // DB::table('surat_dokbasts')->where('id', $id)->get();
+                ->first();
             return view('surat_masuk/viewSuratMasuk', [
                 'user' => $user, 'suratDokbast' => $surat_dokbats
             ]);
@@ -74,9 +65,9 @@ class SuratMasukController extends Controller
                     'b.nip as nip2',
                     'b.nama as nama2'
                 )
-                ->get();
-            // return view('surat_keluar/downloadPDF', ['user' => $user, 'suratDokbast' => $posts]);
-            $pdf = FacadePdf::loadView('surat_masuk/downloadPDF', ['suratDokbast' => $posts])->setPaper('a4', 'portrait');
+                ->first();
+            $formattedDate = Carbon::parse($posts->tanggal_diperoleh)->locale('id')->isoFormat('dddd, D MMMM YYYY');
+            $pdf = FacadePdf::loadView('surat_masuk/downloadPDF', ['suratDokbast' => $posts, 'formattedDate' => $formattedDate])->setPaper('a4', 'portrait');
             // $pdf = DomPDFPDF::loadView('nama_view');
             return $pdf->download('laporan-test-pdf.pdf');
         }

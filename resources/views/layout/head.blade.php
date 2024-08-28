@@ -18,3 +18,17 @@
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="{{asset('css/demo.css')}}" />
     <link href="{{ asset('vendor/sweetalert/sweetalert.css') }}" rel="stylesheet">
+    <style>
+        .no-sort::after {
+            display: none!important;
+        }
+
+        .no-sort::before {
+            display: none!important;
+        }
+
+        .no-sort {
+            pointer-events: none!important;
+            cursor: default!important;
+        }
+    </style>

@@ -36,11 +36,9 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                @foreach($suratDokbast as $p)
-                @if ($p->kode_barang != null)                
                   <div class="card">
                     <div class="card-header">
-                      <input type="hidden" name="id" value="{{ $p->id }}"> <br/>
+                      <input type="hidden" name="id" value="{{ $suratDokbast->id }}"> <br/>
                       <div class="card-title">Asset Yang Diserahkan</div>
                     </div>
                     <div class="card-body">
@@ -51,7 +49,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" placeholder="Kode Barang" name="kodeBarang" readonly value="{{ $p->kode_barang }}"/>
+                          <input type="text" class="form-control" placeholder="Kode Barang" name="kodeBarang" readonly value="{{ $suratDokbast->kode_barang }}"/>
                         </div>
                       </div>
                       <div class="row">
@@ -61,7 +59,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" placeholder="Nama Barang" name="namaBarang" readonly value="{{ $p->nama_barang }}"/>
+                          <input type="text" class="form-control" placeholder="Nama Barang" name="namaBarang" readonly value="{{ $suratDokbast->nama_barang }}"/>
                         </div>
                       </div>
                       <div class="row">
@@ -71,7 +69,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                          <input type="text" class="form-control" placeholder="Spesifikasi Barang" name="spesifikasiBarang" readonly value="{{ $p->spesifikasi_barang }}"/>
+                          <input type="text" class="form-control" placeholder="Spesifikasi Barang" name="spesifikasiBarang" readonly value="{{ $suratDokbast->spesifikasi_barang }}"/>
                         </div>
                       </div>
                       <div class="row">
@@ -81,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                          <input type="number" class="form-control" placeholder="Jumlah Barang" name="jumlahBarang" readonly value="{{ $p->jumlah_barang }}"/>
+                          <input type="number" class="form-control" placeholder="Jumlah Barang" name="jumlahBarang" readonly value="{{ $suratDokbast->jumlah_barang }}"/>
                         </div>
                         <div class="col-lg-2">
                           <div class="form-group">
@@ -89,7 +87,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                          <input type="text" class="form-control" placeholder="Satuan Barang" name="satuanBarang" readonly value="{{ $p->satuan_barang }}"/>
+                          <input type="text" class="form-control" placeholder="Satuan Barang" name="satuanBarang" readonly value="{{ $suratDokbast->satuan_barang }}"/>
                         </div>
                       </div>
                       <div class="row">
@@ -99,7 +97,7 @@
                             </div>
                         </div>
                         <div class="col-lg-3">
-                          <input type="date" class="form-control" placeholder="Tanggal Diperoleh" name="tanggalDiperoleh" readonly value="{{ $p->tanggal_diperoleh }}"/>
+                          <input type="date" class="form-control" placeholder="Tanggal Diperoleh" name="tanggalDiperoleh" readonly value="{{ $suratDokbast->tanggal_diperoleh }}"/>
                         </div>
                       </div>
                       {{-- <div class="row">
@@ -114,8 +112,6 @@
                       </div> --}}
                     </div>
                   </div>
-                  @endif
-                @endforeach
               </div>
             </div>
             <div class="row">

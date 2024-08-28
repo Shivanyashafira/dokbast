@@ -39,10 +39,10 @@
                       >
                         <thead>
                           <tr>
-                            <th>No Dokumen</th>
+                            <th class="no-sort">No Dokumen</th>
                             <th>Tanggal</th>
-                            <th>Prihal</th>
-                            <th>Action</th>
+                            <th class="no-sort">Prihal</th>
+                            <th class="no-sort">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -52,13 +52,13 @@
                             <td>{{ $p->tglSurat }}</td>
                             <td>{{ $p->prihal }}</td>
                             <td>
-                              <a href="suratKeluar/show/{{ $p->id }}" class="btn btn-warning">
+                              <a href="suratKeluar/show/{{ $p->surat_hdr_id }}" class="btn btn-warning">
                                 <i class="fa fa-eye"></i>
                               </a>
-                              <a href="suratKeluar/download/{{ $p->id }}" class="btn btn-success">
+                              <a href="suratKeluar/download/{{ $p->surat_hdr_id }}" class="btn btn-success">
                                 <i class="fa fa-download"></i>
                               </a>
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm{{ $p->id }}" data-id="">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalForm{{ $p->surat_hdr_id }}" data-id="">
                                 <i class="fa fa-location-arrow"></i>
                             </button>
                             </td>
@@ -77,7 +77,7 @@
     </div>
 
     @foreach($surat_dokbasts as $p)
-      <div class="modal fade" id="modalForm{{ $p->id }}" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
+      <div class="modal fade" id="modalForm{{ $p->surat_hdr_id }}" tabindex="-1" role="dialog" aria-labelledby="modalFormLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -88,24 +88,7 @@
                 </div>
                 <div class="modal-body">
                   <div class="row">
-                    @if ( $p->id  == 1)
-                      <img src="{{ url('/img/lokasi/1.png') }}" >
-                    @endif
-                    @if ( $p->id  == 2)
-                      <img src="{{ url('/img/lokasi/2.png') }}" >
-                    @endif
-                    @if ( $p->id  == 3)
-                      <img src="{{ url('/img/lokasi/3.png') }}" >
-                    @endif
-                    @if ( $p->id  == 4)
-                      <img src="{{ url('/img/lokasi/4.png') }}" >
-                    @endif
-                    @if ( $p->id  == 5)
-                      <img src="{{ url('/img/lokasi/5.png') }}" >
-                    @endif
-                    @if ( $p->id  == 6)
-                      <img src="{{ url('/img/lokasi/6.png') }}" >
-                    @endif
+                    <img src="{{ url('/data_file/'.$p->file) }}" >
                 </div> 
               </div>
             </div>
