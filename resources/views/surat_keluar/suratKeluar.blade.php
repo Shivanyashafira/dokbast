@@ -88,7 +88,7 @@
                 </div>
                 <div class="modal-body">
                   <div class="row">
-                    <img src="{{ url('/data_file/'.$p->file) }}" >
+                    <img src="{{ url('/img/lokasi/'.$p->lokasi.'.png') }}" >
                 </div> 
               </div>
             </div>
